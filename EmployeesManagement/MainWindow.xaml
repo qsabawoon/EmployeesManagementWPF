@@ -1,0 +1,41 @@
+﻿<Window x:Class="EmployeesManagement.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EmployeesManagement"
+        mc:Ignorable="d"
+        Title="Employees Management" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <StackPanel Orientation="Horizontal" Margin="0,10,0,0" HorizontalAlignment="Center" Width="780" Height="33" VerticalAlignment="Top">
+            <TextBlock x:Name="LblName" Width="41" Height="20" Text="Name"/>
+            <TextBox x:Name="TxtName" TextWrapping="Wrap" Width="120" Height="20"/>
+            <TextBlock x:Name="LblGender" Width="43" Height="20" Text="Gender" Margin="10,0,0,0"/>
+            <ComboBox x:Name="CmbGender" Width="74" Height="20">
+                <ComboBoxItem Content="Male" IsSelected="True"/>
+                <ComboBoxItem Content="Female"/>
+            </ComboBox>
+            <TextBlock x:Name="LblEmail" Width="34" Height="20" Text="Email" Margin="10,0,0,0"/>
+            <TextBox x:Name="TxtEmail" TextWrapping="Wrap" Width="198" Height="20"/>
+            <Button x:Name="BtnAdd" Content="Add new" Height="20" RenderTransformOrigin="0.984,0.62" BorderThickness="0,1,1,1" Width="71" Click="BtnAdd_Click" Margin="5,0,0,0" IsDefault="True"/>
+        </StackPanel>
+        <DataGrid ItemsSource="{Binding Employees}" AutoGenerateColumns="False" Margin="10,48,10,10" CanUserDeleteRows="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" />
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Header="Gender" Binding="{Binding Gender}" />
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
+                <DataGridTemplateColumn Header="Actions">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Button x:Name="BtnDel" Content="Update" Margin="0,0,3,0" Padding="2,0,2,0" Click="BtnUpdate_Click" CommandParameter="{Binding}" />
+                                <Button Content="Delete" Foreground="Red" Padding="2,0,2,0" Click="BtnDel_Click" CommandParameter="{Binding}" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
